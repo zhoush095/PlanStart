@@ -18,6 +18,11 @@ import os
 import time
 import logging
 
+# LICENSE
+print("    <program>  Copyright (C) 2023  zhousheng"
+      "    This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'."
+      "    This is free software, and you are welcome to redistribute it"
+      "    under certain conditions; type `show c' for details.")
 # Logging
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(filename)s - %(levelname)s - %(message)s')
