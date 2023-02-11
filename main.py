@@ -1,4 +1,4 @@
-'''
+"""
     Copyright (C) 2023  zhousheng
 
     This program is free software: you can redistribute it and/or modify
@@ -13,19 +13,21 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
-'''
+"""
 import os
 import time
 import logging
 
 # LICENSE
-print("    <program>  Copyright (C) 2023  zhousheng"
-      "    This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'."
-      "    This is free software, and you are welcome to redistribute it"
-      "    under certain conditions; type `show c' for details.")
+print("    <program>  Copyright (C) 2023  zhousheng\n"
+      "    This program comes with ABSOLUTELY NO WARRANTY; for details type 'show w'.\n"
+      "    This is free software, and you are welcome to redistribute it.\n"
+      "    under certain conditions; type `show c' for details.\n")
+
 # Logging
 logging.basicConfig(level=logging.INFO,
-                    format='%(asctime)s - %(filename)s - %(levelname)s - %(message)s')
+                    format='%(asctime)s - %(filename)s - %(levelname)s - %(message)s',
+                    filename='plan_start.log')
 logger = logging.getLogger(__name__)
 
 # Get Time
@@ -36,26 +38,39 @@ time_week_hour_minute: int = int(time.strftime('%w%H%M', time.localtime(time.tim
 time_day_hour_minute: int = int(time.strftime('%d%H%M', time.localtime(time.time())))
 
 # Variable Logging
-logger.info("Variable "+"time_year_month_day_hour_minute"+" value is "+str(time_year_month_day_hour_minute))
-logger.info("Variable "+"time_month_day_hour_minute"+" value is "+str(time_month_day_hour_minute))
-logger.info("Variable "+"time_year_month_day_hour_minute"+" value is "+str(time_year_month_day_hour_minute))
+logger.info("Variable time_year_month_day_hour_minute value is " + str(time_year_month_day_hour_minute))
+logger.info("Variable time_month_day_hour_minute value is " + str(time_month_day_hour_minute))
+logger.info("Variable time_week_hour_minute value is " + str(time_week_hour_minute))
+logger.info("Variable time_day_hour_minute value is " + str(time_day_hour_minute))
 
+# List initialize
+plan_name_list = []
 plan_start_list = []
 plan_time_list = []
 
-i = 0
-while 1:
-    input_str = input()
-    if input_str == 'exit':
-        break
-    plan_start_list.append(input_str)
-    if not os.path.exists(plan_start_list[i]):
-        print("Path not found")
-        plan_start_list.remove(input_str)
+
+# Input func
+def plan_name_input(input_str: str):
+    plan_name_list.append(input_str)
+    logger.info("List append plan_name_list input is " + str(type(input_str)) + " and value is" + str(input_str))
+    return 0
+
+
+def plan_start_input(input_str: str):
+    if not os.path.exists(input_str):
+        return "Path not found"
     else:
-        i += 1
+        plan_start_list.append(input_str)
+        return 0
+
+
+def plan_time_input(input_mode: str, input_int: int):
+    if input_mode == 'year_month_day_hour_minute':
+
+
+
 
 for a in range(0, len(plan_start_list)):
-    os.system('"'+plan_start_list[a]+'"')
+    os.system('"' + plan_start_list[a] + '"')
     # out_str = out.read()
     # print(out_str)
